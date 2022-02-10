@@ -5,15 +5,17 @@ function DataQueue(props) {
         <fieldset>
             <legend>Dados de fila</legend>
             <InputNumber
-                label='Tempo médio de permanência na fila: '
-                index='tf'
-                event={props.setValues}
+                label='Número médio de clientes na fila: '
+                index='nf'
+                event={props.event.nf}
+                value={props.value.nf()}
             />
             <br></br>
             <InputNumber
-                label='Número médio de clientes na fila: '
-                index='nf'
-                event={props.setValues}
+                label='Tempo médio de permanência na fila: '
+                index='tf'
+                event={props.event.tf}
+                value={props.value.tf()}
             />
         </fieldset>
     );
