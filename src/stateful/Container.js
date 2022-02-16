@@ -3,6 +3,7 @@ import QueueData from './input data/QueueData';
 import SystemData from './input data/SystemData';
 import ArriveData from './input data/ArriveData';
 import ServiceData from './input data/ServiceData'
+import OtherData from './input data/OtherData';
 
 class Container extends React.Component {
     constructor(props) {
@@ -19,7 +20,8 @@ class Container extends React.Component {
             ta: 1.0, 
             m: 1.0,
             mu: 1.0, 
-            rho: 2.0
+            rho: 2.0,
+            tfs: 1.0
         }
 
         this.parseInput = this.parseInput.bind(this);
@@ -62,6 +64,10 @@ class Container extends React.Component {
             mu: {
                 ta: () => 1 / this.state.mu
             },
+            rho: {
+            },
+            tfs: {
+            }
         };
 
         this.updated = new Set();
@@ -83,6 +89,10 @@ class Container extends React.Component {
                 value={this.state}
                 />
                 <ServiceData
+                event={this.parseInput}
+                value={this.state}
+                />
+                <OtherData
                 event={this.parseInput}
                 value={this.state}
                 />
