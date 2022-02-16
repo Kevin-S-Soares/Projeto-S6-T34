@@ -1,6 +1,6 @@
 import InputNumber from "../InputNumber";
 
-function DataSystem(props) {
+function SystemData(props) {
     return (
         <fieldset>
             <legend>Dados do sistema</legend>
@@ -21,4 +21,4 @@ function DataSystem(props) {
     );
 }
 
-export default DataSystem;
+export default SystemData;

@@ -1,6 +1,6 @@
 import InputNumber from "../InputNumber";
 
-function DataQueue(props) {
+function QueueData(props) {
     return (
         <fieldset>
             <legend>Dados de fila</legend>
@@ -21,4 +21,4 @@ function DataQueue(props) {
     );
 }
 
-export default DataQueue;
+export default QueueData;

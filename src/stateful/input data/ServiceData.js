@@ -1,6 +1,6 @@
 import InputNumber from "../InputNumber";
 
-function DataService(props) {
+function ServiceData(props) {
     return (
         <fieldset>
             <legend>Dados de atendimento</legend>
@@ -35,4 +35,4 @@ function DataService(props) {
     );
 }
 
-export default DataService;
+export default ServiceData;

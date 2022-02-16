@@ -1,8 +1,8 @@
 import React from 'react';
-import DataQueue from './input data/DataQueue';
-import DataSystem from './input data/DataSystem';
-import DataArrive from './input data/DataArrive';
-import DataService from './input data/DataService'
+import QueueData from './input data/QueueData';
+import SystemData from './input data/SystemData';
+import ArriveData from './input data/ArriveData';
+import ServiceData from './input data/ServiceData'
 
 class Container extends React.Component {
     constructor(props) {
@@ -18,7 +18,8 @@ class Container extends React.Component {
             na: 2.0,
             ta: 1.0, 
             m: 1.0,
-            mu: 1.0
+            mu: 1.0, 
+            rho: 2.0
         }
 
         this.parseInput = this.parseInput.bind(this);
@@ -69,19 +70,19 @@ class Container extends React.Component {
     render() {
         return (
             <div>
-                <DataSystem
+                <SystemData
                 event={this.parseInput}
                 value={this.state}
                 />
-                <DataArrive 
+                <ArriveData 
                 event={this.parseInput}
                 value={this.state}
                 />
-                <DataQueue
+                <QueueData
                 event={this.parseInput}
                 value={this.state}
                 />
-                <DataService
+                <ServiceData
                 event={this.parseInput}
                 value={this.state}
                 />
@@ -103,7 +104,7 @@ class Container extends React.Component {
         });
 
         this.updated.add(input);
-        
+
         for(const key in this.toUpdate[input]){
             if(!this.updated.has(key)){
                 this.setValue(

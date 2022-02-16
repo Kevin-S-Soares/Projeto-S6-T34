@@ -1,6 +1,6 @@
 import InputNumber from "../InputNumber";
 
-function DataArrive(props) {
+function ArriveData(props) {
     return (
         <fieldset>
             <legend>Dados de chegada</legend>
@@ -21,4 +21,4 @@ function DataArrive(props) {
     );
 }
 
-export default DataArrive;
+export default ArriveData;
