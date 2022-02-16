@@ -4,14 +4,13 @@ import DataSystem from './input data/DataSystem';
 import DataArrive from './input data/DataArrive';
 import DataService from './input data/DataService'
 
-
 class Container extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = { 
-            ns: 2.0,
-            ts: 1.0, 
+            ns: 4.0,
+            ts: 2.0, 
             lambda : 2.0,
             ic : 0.5,
             nf: 2.0,
@@ -27,10 +26,12 @@ class Container extends React.Component {
 
         this.toUpdate = {
             ns: {
-                ts: () => this.state.ns / this.state.lambda
+                ts: () => this.state.ns / this.state.lambda, 
+                nf: () => this.state.ns - this.state.na
             },
             ts: {
-                ns: () => this.state.lambda * this.state.ts
+                ns: () => this.state.lambda * this.state.ts,
+                tf: () => this.state.ts - this.state.ta
             },
             lambda: {
                 ns: () => this.state.lambda * this.state.ts,
@@ -41,12 +42,28 @@ class Container extends React.Component {
                 lambda: () => 1 / this.state.ic
             },
             nf: {
-                tf: () => this.state.nf / this.state.lambda
+                tf: () => this.state.nf / this.state.lambda,
+                ns: () => this.state.nf + this.state.na
             },
             tf: {
-                nf: () => this.state.tf * this.state.lambda
+                nf: () => this.state.tf * this.state.lambda,
+                ts: () => this.state.tf + this.state.ta
+            },
+            na: {
+                ns: () => this.state.na + this.state.nf
+            },
+            ta: {
+                mu: () => 1 / this.state.ta,
+                ts: () => this.state.ta + this.state.tf
+            },
+            m: {
+            },
+            mu: {
+                ta: () => 1 / this.state.mu
             },
         };
+
+        this.updated = new Set();
     }
 
     render() {
@@ -76,15 +93,19 @@ class Container extends React.Component {
         let node = event.target;
         let value = parseFloat(node.value);
         let input = node.getAttribute('index');
-        this.setValue(input, value, input);
+        this.setValue(input, value);
+        this.updated.clear();
     }
 
-    async setValue(input, value, removeUpdate){
+    async setValue(input, value){
         await this.setState({ 
             [input] : value
         });
+
+        this.updated.add(input);
+        
         for(const key in this.toUpdate[input]){
-            if(key !== removeUpdate){
+            if(!this.updated.has(key)){
                 this.setValue(
                     key,
                     this.toUpdate[input][key](),
@@ -95,6 +116,4 @@ class Container extends React.Component {
     }
 }
 
-
-
-export default Container
+export default Container;
