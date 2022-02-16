@@ -7,15 +7,15 @@ function DataArrive(props) {
             <InputNumber
                 label='Ritmo médio de chegada (λ): '
                 index='lambda'
-                event={props.event.lambda}
-                value={props.value.lambda()}
+                event={props.event}
+                value={props.value.lambda}
             />
             <br></br>
             <InputNumber
                 label='Intervalo médio entre chegadas: '
                 index='ic'
-                event={props.event.ic}
-                value={props.value.ic()}
+                event={props.event}
+                value={props.value.ic}
             />
         </fieldset>
     );

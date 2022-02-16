@@ -7,15 +7,15 @@ function DataQueue(props) {
             <InputNumber
                 label='Número médio de clientes na fila: '
                 index='nf'
-                event={props.event.nf}
-                value={props.value.nf()}
+                event={props.event}
+                value={props.value.nf}
             />
             <br></br>
             <InputNumber
                 label='Tempo médio de permanência na fila: '
                 index='tf'
-                event={props.event.tf}
-                value={props.value.tf()}
+                event={props.event}
+                value={props.value.tf}
             />
         </fieldset>
     );

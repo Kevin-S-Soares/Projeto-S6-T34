@@ -4,10 +4,11 @@ function InputNumber(props){
             <label>{props.label}</label>
             <input 
             type="number"
-            id={props.id}
             index={props.index}
-            onChange={props.event}
+            onInput={props.event}
             value={props.value}
+            min="0.1"
+            step="0.1"
             />
         </div>
     );
