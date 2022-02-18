@@ -4,6 +4,7 @@ import SystemData from './input data/SystemData';
 import ArriveData from './input data/ArriveData';
 import ServiceData from './input data/ServiceData'
 import OtherData from './input data/OtherData';
+import Chart from './Chart';
 
 class Container extends React.Component {
     constructor(props) {
@@ -71,11 +72,14 @@ class Container extends React.Component {
         };
 
         this.updated = new Set();
+        this.lock = 0;
+        this.chart = new Chart()
     }
 
     render() {
         return (
             <div>
+                {this.chart.render()}
                 <SystemData
                 event={this.parseInput}
                 value={this.state}
@@ -100,15 +104,24 @@ class Container extends React.Component {
         );
     }
 
-    parseInput(event){
+    componentDidMount(){
+        this.chart.initChart();
+    }
+
+    async parseInput(event){
         let node = event.target;
         let value = parseFloat(node.value);
         let input = node.getAttribute('index');
         this.setValue(input, value);
+        setTimeout(() => 0, 100);
         this.updated.clear();
+        this.chart.update(this.state);
+        console.log('chegou aqui');
     }
 
     async setValue(input, value){
+        console.log('input being updated: ' + input + ' with value: ' + value)
+        this.lock++;
         await this.setState({ 
             [input] : value
         });
@@ -124,6 +137,7 @@ class Container extends React.Component {
                     );
             }
         }
+        this.lock--;
     }
 }
 
