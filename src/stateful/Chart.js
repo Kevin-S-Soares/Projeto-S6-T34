@@ -12,7 +12,7 @@ class Chart extends React.Component{
         this.barChart = null;
         this.pieChart = null;
 
-        this.options = getOptions(4);
+        this.options = getOptions(props);
         this.update = this.update.bind(this);
     }
     componentDidMount(){
@@ -35,7 +35,7 @@ class Chart extends React.Component{
     }
 
     update(state){
-      this.options = getOptions(state.ns);
+      this.options = getOptions(state);
       this.chart.setOption(this.options);
     }
 
@@ -44,36 +44,34 @@ class Chart extends React.Component{
       this.chart.setOption(this.options);
     }
 }
-function getOptions(value){
+function getOptions(state){
   return {
-    title: {
-      text: 'Teoria das filas'
-    },
     tooltip: {},
     xAxis: {
       data: ['Número médio', 'Tempo médio']
     },
     yAxis: {},
+    legend: {},
     series: [
       {
-        name: 'Número médio de clientes no sistema',
+        name: 'Sistema',
         type: 'bar',
-        data: [value],
+        data: [state.ns, state.ts],
       },
       {
-        name: 'Número médio de clientes na fila',
+        name: 'Fila',
         type: 'bar',
         barWidth: 20,
-        stack: 'Número médio de clientes no sistema',
-        data: [2]
+        stack: 'Sistema',
+        data: [state.nf, state.tf]
       },
       {
-        name: 'Número médio de clientes no atendimento',
+        name: 'Atendimento',
         type: 'bar',
-        barWidth: 5,
-        stack: 'Número médio de clientes no sistema',
-        data: [2]
-      },
+        barWidth: 20,
+        stack: 'Sistema',
+        data: [state.na, state.ta]
+      }
     ]
   };
 }

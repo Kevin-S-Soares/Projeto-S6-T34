@@ -27,7 +27,7 @@ function ServiceData(props) {
             <br></br>
             <InputNumber
                 label='Ritmo médio de atendimento de cada atendente (µ): '
-                index='m'
+                index='mu'
                 event={props.event}
                 value={props.value.mu}
             />

@@ -9,6 +9,7 @@ function SystemData(props) {
                 index='ns'
                 event={props.event}
                 value={props.value.ns}
+                readonly={true}
             />
             <br></br>
             <InputNumber
@@ -16,6 +17,7 @@ function SystemData(props) {
                 index='ts'
                 event={props.event}
                 value={props.value.ts}
+                readonly={true}
             />
         </fieldset>
     );

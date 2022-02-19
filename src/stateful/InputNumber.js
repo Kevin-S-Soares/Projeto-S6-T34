@@ -9,6 +9,7 @@ function InputNumber(props){
             value={props.value}
             min="0.1"
             step="0.1"
+            readOnly={props.readonly === undefined? false: true}
             />
         </div>
     );
