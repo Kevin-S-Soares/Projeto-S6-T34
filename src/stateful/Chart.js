@@ -1,6 +1,8 @@
 import React from "react";
 import * as echarts from 'echarts';
 import './Chart.css';
+import getBarChartOptions from "./chart visualizations/BarChart";
+import getPieChartOptions from "./chart visualizations/PieChart"
 
 class Chart extends React.Component{
     constructor(props){
@@ -9,16 +11,16 @@ class Chart extends React.Component{
         this.chart = null;
         this.changeVisualization = this.changeVisualization.bind(this);
 
-        this.barChart = null;
-        this.pieChart = null;
+        this.visualization = {
+          bar: getBarChartOptions,
+          pie: getPieChartOptions,
+        }
 
-        this.options = getOptions(props);
+        this.selected = this.visualization.bar;
+        this.options = this.selected(props);
         this.update = this.update.bind(this);
     }
-    componentDidMount(){
-      this.chart = echarts.init(document.getElementById('chart'));
-      this.chart.setOption(this.options);
-    }
+
     render(){
         return(
           <div>
@@ -27,16 +29,21 @@ class Chart extends React.Component{
             <button index='pie' onClick={this.changeVisualization}>Gráfico de setores</button>
             <button index='bar' onClick={this.changeVisualization}>Gráfico de barras</button>
           </div>
-
         );
     }
 
     changeVisualization(event){
+      let node = event.target;
+      let index = node.getAttribute('index');
+
+      this.selected = this.visualization[index];
+      this.update(this.props)
     }
 
     update(state){
-      this.options = getOptions(state);
-      this.chart.setOption(this.options);
+      this.props = state;
+      this.options = this.selected(state);
+      this.chart.setOption(this.options, true);
     }
 
     initChart(){
@@ -44,35 +51,5 @@ class Chart extends React.Component{
       this.chart.setOption(this.options);
     }
 }
-function getOptions(state){
-  return {
-    tooltip: {},
-    xAxis: {
-      data: ['Número médio', 'Tempo médio']
-    },
-    yAxis: {},
-    legend: {},
-    series: [
-      {
-        name: 'Sistema',
-        type: 'bar',
-        data: [state.ns, state.ts],
-      },
-      {
-        name: 'Fila',
-        type: 'bar',
-        barWidth: 20,
-        stack: 'Sistema',
-        data: [state.nf, state.tf]
-      },
-      {
-        name: 'Atendimento',
-        type: 'bar',
-        barWidth: 20,
-        stack: 'Sistema',
-        data: [state.na, state.ta]
-      }
-    ]
-  };
-}
+
 export default Chart;

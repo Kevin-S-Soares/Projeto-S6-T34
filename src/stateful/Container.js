@@ -10,7 +10,6 @@ class Container extends React.Component {
     constructor(props) {
         super(props);
 
-
         this.value = {
             ns: 4.0,
             ts: 2.0, 
@@ -26,9 +25,7 @@ class Container extends React.Component {
             tfs: 1.0
         }
 
-        this.state = this.value;
-
-        this.parseInput = this.parseInput.bind(this);
+        this.parseInputAndSetValue = this.parseInputAndSetValue.bind(this);
         this.setValue = this.setValue.bind(this);
 
         this.toUpdate = {
@@ -80,23 +77,23 @@ class Container extends React.Component {
             <div>
                 {this.chart.render()}
                 <SystemData
-                event={this.parseInput}
+                event={this.parseInputAndSetValue}
                 value={this.value}
                 />
                 <ArriveData 
-                event={this.parseInput}
+                event={this.parseInputAndSetValue}
                 value={this.value}
                 />
                 <QueueData
-                event={this.parseInput}
+                event={this.parseInputAndSetValue}
                 value={this.value}
                 />
                 <ServiceData
-                event={this.parseInput}
+                event={this.parseInputAndSetValue}
                 value={this.value}
                 />
                 <OtherData
-                event={this.parseInput}
+                event={this.parseInputAndSetValue}
                 value={this.value}
                 />
             </div>
@@ -107,18 +104,18 @@ class Container extends React.Component {
         this.chart.initChart();
     }
 
-    async parseInput(event){
+    parseInputAndSetValue(event){
         let node = event.target;
         let value = parseFloat(node.value);
         let input = node.getAttribute('index');
+
         this.setValue(input, value);
-        this.updated.clear();
         this.setState(this.value);
-        console.log(this.value);
+        this.updated.clear();
         this.chart.update(this.value);
     }
 
-    async setValue(input, value){
+    setValue(input, value){
         this.value[input] = value;
 
         this.updated.add(input);
@@ -127,8 +124,7 @@ class Container extends React.Component {
             if(!this.updated.has(key)){
                 this.setValue(
                     key,
-                    this.toUpdate[input][key](),
-                    input,
+                    this.toUpdate[input][key]()
                     );
             }
         }
