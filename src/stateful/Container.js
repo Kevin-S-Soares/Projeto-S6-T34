@@ -74,7 +74,7 @@ class Container extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="row">
                 {this.chart.render()}
                 <SystemData
                 event={this.parseInputAndSetValue}

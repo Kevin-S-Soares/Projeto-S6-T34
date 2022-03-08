@@ -2,21 +2,22 @@ import InputNumber from "../InputNumber";
 
 function QueueData(props) {
     return (
-        <fieldset>
-            <legend>Dados de fila</legend>
-            <InputNumber
-                label='Número médio de clientes na fila: '
-                index='nf'
-                event={props.event}
-                value={props.value.nf}
-            />
-            <br></br>
-            <InputNumber
-                label='Tempo médio de permanência na fila: '
-                index='tf'
-                event={props.event}
-                value={props.value.tf}
-            />
+        <fieldset className="card mt-2 ps-0 pe-0">
+            <legend className="card-header">Dados de fila</legend>
+            <div className="card-body">
+                <InputNumber
+                    label='Número médio de clientes na fila: '
+                    index='nf'
+                    event={props.event}
+                    value={props.value.nf}
+                />
+                <InputNumber
+                    label='Tempo médio de permanência na fila: '
+                    index='tf'
+                    event={props.event}
+                    value={props.value.tf}
+                />
+            </div>
         </fieldset>
     );
 }

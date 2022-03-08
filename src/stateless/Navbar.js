@@ -1,4 +1,3 @@
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">

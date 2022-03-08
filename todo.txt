@@ -1,5 +1,6 @@
-classe de bootstrap
-graficos
-
-
-proximo -> graficos
+embelezar navbar
+embelezar visualização (alinhar visualização com inputs)
+adicionar disabled quando a visualização estiver ativa
+adicionar navegação de página
+adicionar sobre
+adicionar footer
