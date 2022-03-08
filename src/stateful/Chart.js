@@ -23,9 +23,8 @@ class Chart extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="chart ps-0 pe-0 col-xl-9" id='chart'>
-
+      <div className="row gx-0">
+        <div className="chart  col-xl-9" id='chart'>
         </div>
         <div className="card ps-0 pe-0 offset-xl-1 col-xl-2">
           <h5 className="card-header text-center">Visualização</h5>
