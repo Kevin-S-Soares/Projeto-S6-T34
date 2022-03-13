@@ -9,7 +9,7 @@ class Chart extends React.Component {
     super(props);
 
     this.chart = null;
-    this.changeVisualization = this.changeVisualization.bind(this);
+    
 
     this.visualization = {
       bar: getBarChartOptions,
@@ -18,20 +18,25 @@ class Chart extends React.Component {
 
     this.selected = this.visualization.bar;
     this.options = this.selected(props);
+    this.active = null;
+
+
     this.update = this.update.bind(this);
+    this.changeVisualization = this.changeVisualization.bind(this);
   }
 
   render() {
     return (
       <div className="row gx-0">
-        <div className="chart  col-xl-9" id='chart'>
+        <div className="chart col-xl-9 table-responsive" id="chart">
         </div>
         <div className="card ps-0 pe-0 offset-xl-1 col-xl-2">
           <h5 className="card-header text-center">Visualização</h5>
           <div className="card-body text-center">
-            <button index='pie' className="btn btn-primary btn-sm" onClick={this.changeVisualization}>Gráfico de setores</button>
+            <button index="bar" id="bar" className="btn btn-primary ps-2 pe-3 btn-sm" onClick={this.changeVisualization}>Gráfico de barras</button>
             <br/>
-            <button index='bar' className="btn btn-primary ps-2 pe-3 mt-2 btn-sm" onClick={this.changeVisualization}>Gráfico de barras</button>
+            <button index="pie" id="pie" className="btn btn-primary mt-2 btn-sm" onClick={this.changeVisualization}>Gráfico de setores</button>
+            <br/>
           </div>
         </div>
       </div>
@@ -41,6 +46,10 @@ class Chart extends React.Component {
   changeVisualization(event) {
     let node = event.target;
     let index = node.getAttribute('index');
+
+    this.active.disabled = false;
+    this.active = node;
+    this.active.disabled = true;
 
     this.selected = this.visualization[index];
     this.update(this.props)
@@ -53,6 +62,8 @@ class Chart extends React.Component {
   }
 
   initChart() {
+    this.active = document.getElementById('bar');
+    this.active.disabled = true;
     this.chart = echarts.init(document.getElementById('chart'));
     this.chart.setOption(this.options);
   }

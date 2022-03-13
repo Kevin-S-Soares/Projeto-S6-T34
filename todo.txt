@@ -1,4 +1,2 @@
-adicionar disabled quando a visualização estiver ativa
 adicionar navegação de página
 adicionar sobre
-adicionar footer
