@@ -1,2 +1,2 @@
-adicionar navegação de página
-adicionar sobre
+Mais tipos de visualizações.
+Saber se determinado sistema está ou não otimizado.
