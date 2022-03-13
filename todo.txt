@@ -1,2 +1,3 @@
 Mais tipos de visualizações.
+Mais detalhes nas visualizações.
 Saber se determinado sistema está ou não otimizado.
