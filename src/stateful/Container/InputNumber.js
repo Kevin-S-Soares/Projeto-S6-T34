@@ -1,19 +1,17 @@
 function InputNumber(props) {
     return (
-        <dl className="row">
-            <dt className="col-sm-6">{props.label}</dt>
-            <dd>
+        <dl className="row text-center">
+            <dt className="col-sm-6 text-end">{props.label}</dt>
                 <input
-                className="col-sm-5"
+                    className="col-sm-4 text-start pe-0"
                     type="number"
                     index={props.index}
                     onInput={props.event}
                     value={props.value}
-                    min="0.1"
-                    step="0.1"
+                    min={props.integer ? "1" : "0.1"}
+                    step={props.integer ? "1" : "0.1"}
                     readOnly={props.readonly === undefined ? false : true}
                 />
-            </dd>
         </dl>
     );
 }

@@ -9,7 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <div className="container mt-3 mb-2">
+      <div className="container mt-2 mb-2">
         <Routes>
           <Route path="/" element={<Tool />} />
           <Route path="/About" element={<About />} />

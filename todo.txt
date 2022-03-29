@@ -1,3 +1,2 @@
-Mais tipos de visualizações.
-Mais detalhes nas visualizações.
-Saber se determinado sistema está ou não otimizado.
+Fazer linha de rejeitados
+Fazer grafico para não formação de fila
