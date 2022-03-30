@@ -1,4 +1,5 @@
 import NumberOfUsersPerTime from "./NumberOfUsersPerTime";
+import WaitingOnQueue from "./WaitingOnQueue";
 
 class D_D_1_K_FIFO{
 
@@ -6,7 +7,7 @@ class D_D_1_K_FIFO{
         this.chartUpdate = chartUpdate;
         this.inputUpdate = inputUpdate;
         this.name = "D/D/1/K/FIFO";
-        this.measures = [new NumberOfUsersPerTime()];
+        this.measures = [new NumberOfUsersPerTime(), new WaitingOnQueue()];
         this.selectedMeasure = this.measures[0];
 
         this.values = {
@@ -50,7 +51,7 @@ class D_D_1_K_FIFO{
                 index: "processRate"
             },
             {
-                label: "Capacidade do sistema (K):",
+                label: "Capacidade física do sistema (K):",
                 value: this.values.capacity,
                 event: this.setValue,
                 integer: true,
@@ -75,6 +76,7 @@ class D_D_1_K_FIFO{
 
     setMeasure(event){
         this.selectedMeasure = this.measures[event.target.value];
+        this.chartUpdate(this.getChartVisualization());
     }
 
     setValue(event){

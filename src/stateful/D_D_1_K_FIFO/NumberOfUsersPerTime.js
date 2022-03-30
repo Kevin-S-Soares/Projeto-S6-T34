@@ -127,6 +127,7 @@ class NumberOfUsersPerTime{
             series: [
                 {
                     name: 'Formação da fila',
+                    color: 'blue',
                     data: this.queueFormation,
                     type: 'line',
                     smooth: true
