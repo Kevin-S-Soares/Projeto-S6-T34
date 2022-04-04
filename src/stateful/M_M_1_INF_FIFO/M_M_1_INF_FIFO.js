@@ -1,19 +1,19 @@
-import NumberOfUsersPerTime from "./NumberOfUsersPerTime";
 import WaitingOnQueue from "./WaitingOnQueue";
+import ClientsOnSystem from "./ClientsOnSystem";
+import GeneralMeasurements from "./GeneralMeasurements";
 
-class D_D_1_K_FIFO{
-
+class M_M_1_INF_FIFO{
     constructor(chartUpdate, inputUpdate){
         this.chartUpdate = chartUpdate;
         this.inputUpdate = inputUpdate;
-        this.name = "D/D/1/K/FIFO";
-        this.measures = [new NumberOfUsersPerTime(), new WaitingOnQueue()];
+        this.name = "M/M/1/∞/FIFO";
+        this.measures = [new WaitingOnQueue(), new ClientsOnSystem()];
         this.selectedMeasure = this.measures[0];
+        this.generalMeasurement = new GeneralMeasurements();
 
         this.values = {
             arriveRate: 1,
-            processRate: 2,
-            capacity: 1
+            processRate: 2
         }
 
         this.getInputs = this.getInputs.bind(this);
@@ -33,39 +33,29 @@ class D_D_1_K_FIFO{
         return this.measures;
     }
 
-
     getInputs(){
         return [
             {
                 label: "Taxa de chegada (1 ÷ λ):",
                 value: this.values.arriveRate,
                 event: this.setValue,
-                integer: true,
                 index: "arriveRate"
             },
             {
                 label: "Taxa de atendimento (1 ÷ μ):",
                 value: this.values.processRate,
                 event: this.setValue,
-                integer: true,
                 index: "processRate"
-            },
-            {
-                label: "Capacidade física do sistema (K):",
-                value: this.values.capacity,
-                event: this.setValue,
-                integer: true,
-                index: "capacity"
             }
-        ];
+        ]
     }
 
     getInfo(){
         return {
-            arriveType: 'Determinístico',
-            processType: 'Determinístico',
+            arriveType: 'Distribuição exponencial',
+            processType: 'Distribuição exponencial',
             number: '1',
-            capacity: this.values.capacity,
+            capacity: 'Infinito',
             discipline: 'First in first out'
         };
     }
@@ -82,7 +72,7 @@ class D_D_1_K_FIFO{
     setValue(event){
         let node = event.target;
         let input = node.getAttribute('index');
-        this.values[input] = parseInt(node.value);
+        this.values[input] = parseFloat(node.value);
         this.chartUpdate(this.getChartVisualization());
         this.inputUpdate(this.getInputs());
     }
@@ -92,8 +82,9 @@ class D_D_1_K_FIFO{
     }
 
     getGeneralMeasurementDescription(){
-        return [];
+        return this.generalMeasurement.getResult(this.values);
     }
+
 }
 
-export default D_D_1_K_FIFO;
+export default M_M_1_INF_FIFO;

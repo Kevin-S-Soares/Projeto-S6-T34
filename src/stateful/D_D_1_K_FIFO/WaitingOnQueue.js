@@ -95,43 +95,34 @@ class WaitingOnQueue{
                 name: 'Ordem do usuário',
                 interval: 1,
                 min: 1,
-                max: this.maxXAxisInterval, // ok
+                max: this.maxXAxisInterval,
                 top: "2%",
             },
             yAxis: {
                 type: 'value',
                 name: 'Tempo de espera',
-                interval: this.yAxisInterval, // ok
+                interval: this.yAxisInterval, 
                 min: 0,
-                max: this.maxYAxisInterval, // ok
+                max: this.maxYAxisInterval,
             },
             series: [
                 {
                     name: 'Tempo máximo na fila',
                     color: 'red',
-                    data: this.maxQueueTime, // ok
+                    data: this.maxQueueTime,
                     type: 'line',
                     smooth: true
                 },
                 {
                     name: 'K-ésimo usuário da fila',
                     color: 'blue',
-                    data: this.waitingTimes, //
+                    data: this.waitingTimes,
                     type: 'line',
                     smooth: true
                 },
             ]
         });
     }
-
-    /*
-        function wq(arriveRate, processRate, capacity, n, firstRejectedPlace){
-            if(n < firstRejectedPlace){
-                return (processRate - arriveRate) * (n - 1);
-            }
-            return (capacity - 1) * mu;
-        }
-    */
 }
 
 export default WaitingOnQueue;
