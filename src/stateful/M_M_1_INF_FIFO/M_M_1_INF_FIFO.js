@@ -36,13 +36,13 @@ class M_M_1_INF_FIFO{
     getInputs(){
         return [
             {
-                label: "Taxa de chegada (1 ÷ λ):",
+                label: "Taxa de chegada",
                 value: this.values.arriveRate,
                 event: this.setValue,
                 index: "arriveRate"
             },
             {
-                label: "Taxa de atendimento (1 ÷ μ):",
+                label: "Taxa de atendimento",
                 value: this.values.processRate,
                 event: this.setValue,
                 index: "processRate"
@@ -54,7 +54,7 @@ class M_M_1_INF_FIFO{
         return {
             arriveType: 'Distribuição exponencial',
             processType: 'Distribuição exponencial',
-            number: '1',
+            channels: '1',
             capacity: 'Infinito',
             discipline: 'First in first out'
         };

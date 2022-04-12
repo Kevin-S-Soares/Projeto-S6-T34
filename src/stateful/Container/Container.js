@@ -6,7 +6,8 @@ import MeasureTypeSelection from "./MeasureTypeSelection";
 import InputNumberFactory from "./InputNumberFactory";
 import ChartVisualization from "./ChartVisualization";
 import M_M_1_INF_FIFO from "../M_M_1_INF_FIFO/M_M_1_INF_FIFO";
-import GeneralMeasurement from "./GeneralMeasurement";
+import GeneralMeasurementDetails from "./GeneralMeasurementDetails";
+import M_M_C_INF_FIFO from "../M_M_C_INF_FIFO/M_M_C_INF_FIFO";
 
 
 class Container extends React.Component {
@@ -19,6 +20,7 @@ class Container extends React.Component {
         this.queueOptions = [
             new D_D_1_K_FIFO(this.chartVisualization.update, this.setInput),
             new M_M_1_INF_FIFO(this.chartVisualization.update, this.setInput),
+            new M_M_C_INF_FIFO(this.chartVisualization.update, this.setInput)
         ]
         
         this.state = {
@@ -44,7 +46,7 @@ class Container extends React.Component {
                     measures={this.state.selected.getMeasures()}
                     measureSelectionEvent={this.state.selected.setMeasure}
                 />
-                <GeneralMeasurement
+                <GeneralMeasurementDetails
                     values={this.state.selected.getGeneralMeasurementDescription()}
                 />
                 <InputNumberFactory 

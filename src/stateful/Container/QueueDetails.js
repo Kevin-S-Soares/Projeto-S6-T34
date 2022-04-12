@@ -4,7 +4,7 @@ function QueueDetails(props) {
 
     const arriveType = props.values.arriveType;
     const processType = props.values.processType;
-    const number = props.values.number;
+    const channels = props.values.channels;
     const capacity = props.values.capacity;
     const discipline = props.values.discipline;
 
@@ -20,7 +20,7 @@ function QueueDetails(props) {
                     <dt className="col-md-6 col-6 text-end">Distribuição do tempo entre atendimentos sucessivas:</dt>
                     <dd className="col-md-6 col-6 text-start">{processType}</dd>
                     <dt className="col-md-6 col-6 text-end">Número de postos de atendimento:</dt>
-                    <dd className="col-md-6 col-6 text-start">{number}</dd>
+                    <dd className="col-md-6 col-6 text-start">{channels}</dd>
                     <dt className="col-md-6 col-6 text-end">Capacidade física do sistema:</dt>
                     <dd className="col-md-6 col-6 text-start">{capacity}</dd>
                     <dt className="col-md-6 col-6 text-end">Disciplina de atendimento:</dt>

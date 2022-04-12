@@ -1,6 +1,6 @@
 import React from "react";
 
-function GeneralMeasurement(props) {
+function GeneralMeasurementDetails(props) {
     if (props.values.length === 0) {
         return (
             <></>
@@ -27,4 +27,4 @@ function GeneralMeasurement(props) {
     );
 }
 
-export default GeneralMeasurement;
+export default GeneralMeasurementDetails;
