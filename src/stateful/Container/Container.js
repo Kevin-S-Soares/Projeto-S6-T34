@@ -8,6 +8,7 @@ import ChartVisualization from "./ChartVisualization";
 import M_M_1_INF_FIFO from "../M_M_1_INF_FIFO/M_M_1_INF_FIFO";
 import GeneralMeasurementDetails from "./GeneralMeasurementDetails";
 import M_M_C_INF_FIFO from "../M_M_C_INF_FIFO/M_M_C_INF_FIFO";
+import M_M_1_K_FIFO from "../M_M_1_K_FIFO/M_M_1_K_FIFO";
 
 
 class Container extends React.Component {
@@ -20,7 +21,8 @@ class Container extends React.Component {
         this.queueOptions = [
             new D_D_1_K_FIFO(this.chartVisualization.update, this.setInput),
             new M_M_1_INF_FIFO(this.chartVisualization.update, this.setInput),
-            new M_M_C_INF_FIFO(this.chartVisualization.update, this.setInput)
+            new M_M_C_INF_FIFO(this.chartVisualization.update, this.setInput),
+            new  M_M_1_K_FIFO(this.chartVisualization.update, this.setInput)
         ]
         
         this.state = {

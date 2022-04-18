@@ -36,13 +36,12 @@ class GeneralMeasurements {
     }
 
     getOcupationRate(values){
-        this.rate = values.arriveRate / values.processRate
+        this.rate = values.arriveRate / values.processRate;
         this.ocupationRate = this.rate / values.channels;
         return this.ocupationRate;
     }
 
     getEmptyQueueProbability(values){
-        console.log(values);
         let leftside = 0;
         for(let i = 0; i < values.channels; i++){
             let aux = Math.pow(this.rate, i) / Factorial.calculate(i);

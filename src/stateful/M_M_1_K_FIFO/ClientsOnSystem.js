@@ -18,7 +18,7 @@ class ClientsOnSystem{
                 name: 'Número de clientes no sistema',
                 interval: 1,
                 min: 0,
-                max: 20,
+                max: values.capacity + 1,
                 top: "2%",
             },
             yAxis: {
@@ -37,13 +37,21 @@ class ClientsOnSystem{
             }]
         });
     }
+
     getData(values){
         const result = [];
-        let occupationRate = values.arriveRate / values.processRate
-        for(let i = 0; i <= 20; i++)
+        let occupationRate = values.arriveRate / values.processRate;
+        let formula;
+        if(occupationRate === 1){
+            formula = (state) => (values.capacity + 1 - state) / (values.capacity + 1);
+        }
+        else{
+            formula = (state) => Math.pow(occupationRate, state) * (1 - Math.pow(occupationRate, values.capacity - state + 1)) / (1 - Math.pow(occupationRate, values.capacity + 1));
+        }
+        for(let i = 0; i <= values.capacity + 1; i++)
         {
-            let aux = Math.pow(occupationRate, i);
-            result.push([i, aux])
+            let aux = formula(i);
+            result.push([i, aux]);
         }
         return result;
     }
