@@ -57,7 +57,6 @@ class WaitingOnQueue{
             let aux = 1 - leftside * rightside * Math.pow(Math.E, -values.processRate * t);
             result.push([t, aux]);
         }
-        console.log(result);
         return result;
     }
 

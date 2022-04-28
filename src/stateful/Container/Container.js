@@ -1,14 +1,11 @@
 import React from "react";
 import QueueTypeSelection from "./QueueTypeSelection";
-import D_D_1_K_FIFO from "../D_D_1_K_FIFO/D_D_1_K_FIFO";
 import QueueDetails from "./QueueDetails";
 import MeasureTypeSelection from "./MeasureTypeSelection";
 import InputNumberFactory from "./InputNumberFactory";
 import ChartVisualization from "./ChartVisualization";
-import M_M_1_INF_FIFO from "../M_M_1_INF_FIFO/M_M_1_INF_FIFO";
 import GeneralMeasurementDetails from "./GeneralMeasurementDetails";
-import M_M_C_INF_FIFO from "../M_M_C_INF_FIFO/M_M_C_INF_FIFO";
-import M_M_1_K_FIFO from "../M_M_1_K_FIFO/M_M_1_K_FIFO";
+import QueueTypeFactory from "./QueueTypeFactory";
 
 
 class Container extends React.Component {
@@ -18,12 +15,8 @@ class Container extends React.Component {
         this.setInput = this.setInput.bind(this);
 
         this.chartVisualization = new ChartVisualization('chart');
-        this.queueOptions = [
-            new D_D_1_K_FIFO(this.chartVisualization.update, this.setInput),
-            new M_M_1_INF_FIFO(this.chartVisualization.update, this.setInput),
-            new M_M_C_INF_FIFO(this.chartVisualization.update, this.setInput),
-            new  M_M_1_K_FIFO(this.chartVisualization.update, this.setInput)
-        ]
+        this.queueOptions = QueueTypeFactory.createQueueTypes(
+            this.chartVisualization.update, this.setInput);
         
         this.state = {
             selected : this.queueOptions[0],
@@ -63,8 +56,9 @@ class Container extends React.Component {
     }
 
     setQueueType(event){
+        console.log(this.queueOptions[event.target.value]);
         this.queueOptions[event.target.value].reload();
-        this.setState({selected: this.queueOptions[event.target.value]});    
+        this.setState({selected: this.queueOptions[event.target.value]});
         this.setState({inputs: this.queueOptions[event.target.value].getInputs()});
 
     }

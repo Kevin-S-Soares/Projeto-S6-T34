@@ -3,14 +3,14 @@ import Factorial from "../../math/Factorial";
 class GeneralMeasurements {
     constructor(){
         this.rate = 0;
-        this.ocupationRate = 0;
+        this.occupationRate = 0;
         this.emptyQueueProbability = 0;
     }
     getResult(values){
         return [
             {
                 description: "Taxa de ocupação do sistema:",
-                value: this.getOcupationRate(values).toFixed(3),
+                value: this.getOccupationRate(values).toFixed(3),
             },
             {
                 description: "Probabilidade do sistema estar vazio:",
@@ -35,10 +35,10 @@ class GeneralMeasurements {
         ]
     }
 
-    getOcupationRate(values){
+    getOccupationRate(values){
         this.rate = values.arriveRate / values.processRate;
-        this.ocupationRate = this.rate / values.channels;
-        return this.ocupationRate;
+        this.occupationRate = this.rate / values.channels;
+        return this.occupationRate;
     }
 
     getEmptyQueueProbability(values){

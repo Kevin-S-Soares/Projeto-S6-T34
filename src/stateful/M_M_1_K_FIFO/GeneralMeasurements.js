@@ -1,6 +1,6 @@
 class GeneralMeasurements {
     constructor(){
-        this.ocupationRate = 0;
+        this.occupationRate = 0;
         this.emptyQueueProbability = 0;
         this.averageClientsNumber = 0;
         this.averageClientsOnQueue = 0;
@@ -10,7 +10,7 @@ class GeneralMeasurements {
         return [
             {
                 description: "Taxa de ocupação do sistema:",
-                value: this.getOcupationRate(values).toFixed(3),
+                value: this.getOccupationRate(values).toFixed(3),
             },
             {
                 description: "Probabilidade do sistema estar vazio:",
@@ -35,13 +35,13 @@ class GeneralMeasurements {
         ]
     }
 
-    getOcupationRate(values){
+    getOccupationRate(values){
         this.occupationRate = values.arriveRate / values.processRate;
         return values.arriveRate / values.processRate;
     }
 
     getEmptyQueueProbability(values){
-        if(this.ocupationRate === 1){
+        if(this.occupationRate === 1){
             this.emptyQueueProbability = 1 / (values.capacity + 1);
         }
         else{

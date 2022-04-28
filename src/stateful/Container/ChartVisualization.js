@@ -15,8 +15,10 @@ class ChartVisualization{
     }
 
     update(options){
-        this.chart.clear();
-        this.chart.setOption(options);
+        if(options !== {}){
+            this.chart.clear();
+            this.chart.setOption(options);
+        }
     }
 }
 

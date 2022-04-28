@@ -4,6 +4,7 @@ import './Chart.css';
 function MeasureTypeSelection(props) {
     const measures = props.measures;
     const event = props.measureSelectionEvent;
+
     return (
         <div className="card mb-2">
             <div className="card-header">

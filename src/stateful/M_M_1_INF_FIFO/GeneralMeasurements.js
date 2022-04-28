@@ -1,12 +1,12 @@
 class GeneralMeasurements {
     constructor(){
-        this.ocupationRate = 0;
+        this.occupationRate = 0;
     }
     getResult(values){
         return [
             {
                 description: "Taxa de ocupação do sistema:",
-                value: this.getOcupationRate(values).toFixed(2),
+                value: this.getOccupationRate(values).toFixed(2),
             },
             {
                 description: "Número médio de usuários no sistema:",
@@ -31,25 +31,25 @@ class GeneralMeasurements {
         ]
     }
 
-    getOcupationRate(values){
-        this.ocupationRate = values.arriveRate / values.processRate;
-        return this.ocupationRate;
+    getOccupationRate(values){
+        this.occupationRate = values.arriveRate / values.processRate;
+        return this.occupationRate;
     }
 
     getAverageClientsNumber(){
-        return this.ocupationRate / (1 - this.ocupationRate);
+        return this.occupationRate / (1 - this.occupationRate);
     }
 
     getAverageClientsOnQueue(){
-        return this.ocupationRate * this.ocupationRate / (1 - this.ocupationRate);
+        return this.occupationRate * this.occupationRate / (1 - this.occupationRate);
     }
 
     getEmptyQueueProbability(){
-        return 1 - this.ocupationRate;
+        return 1 - this.occupationRate;
     }
 
     getAverageWaitingTimeOnQueue(values){
-        return this.ocupationRate / (values.processRate - values.arriveRate);
+        return this.occupationRate / (values.processRate - values.arriveRate);
     }
 
     getWaitingTimeOnSystem(values){
