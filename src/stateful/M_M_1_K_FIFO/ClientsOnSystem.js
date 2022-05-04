@@ -40,18 +40,21 @@ class ClientsOnSystem{
 
     getData(values){
         const result = [];
-        let occupationRate = values.arriveRate / values.processRate;
-        let formula;
-        if(occupationRate === 1){
-            formula = (state) => (values.capacity + 1 - state) / (values.capacity + 1);
-        }
-        else{
-            formula = (state) => Math.pow(occupationRate, state) * (1 - Math.pow(occupationRate, values.capacity - state + 1)) / (1 - Math.pow(occupationRate, values.capacity + 1));
-        }
+
         for(let i = 0; i <= values.capacity + 1; i++)
         {
+            let arriveRate = i < values.capacity? values.arriveRate : 0;
+            let occupationRate = arriveRate / values.processRate;
+            let formula;
+            if(occupationRate === 1){
+                formula = (state) => (values.capacity + 1 - state) / (values.capacity + 1);
+            }
+            else{
+                formula = (state) => Math.pow(occupationRate, state) * (1 - Math.pow(occupationRate, values.capacity - state + 1)) / (1 - Math.pow(occupationRate, values.capacity + 1));
+            }
+
             let aux = formula(i);
-            result.push([i, aux]);
+            result.push([i, aux.toFixed(8)]);
         }
         return result;
     }

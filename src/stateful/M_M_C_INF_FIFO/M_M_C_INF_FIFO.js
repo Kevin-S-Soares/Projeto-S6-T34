@@ -14,7 +14,7 @@ class M_M_C_INF_FIFO{
         this.values = {
             arriveRate: 1,
             processRate: 2,
-            channels: 1
+            channels: 2
         }
 
         this.getInputs = this.getInputs.bind(this);

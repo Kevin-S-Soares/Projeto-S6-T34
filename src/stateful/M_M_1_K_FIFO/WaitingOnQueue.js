@@ -52,10 +52,8 @@ class WaitingOnQueue{
             for(let i = 0; i <= n; i++){
                 rightside += Math.pow(values.processRate * t, i) / Factorial.calculate(i);
             }
-            console.log('leftside: ' + leftside);
-            console.log('rightside: ' + rightside);
             let aux = 1 - leftside * rightside * Math.pow(Math.E, -values.processRate * t);
-            result.push([t, aux]);
+            result.push([t, aux.toFixed(8)]);
         }
         return result;
     }
@@ -65,11 +63,12 @@ class WaitingOnQueue{
     }
 
     getProbabilityOfChangingState(values, state){
-        let occupationRate = values.arriveRate / values.processRate;
+        let arriveRate = state < values.capacity? values.arriveRate : 0;
+        let occupationRate = arriveRate / values.processRate;
         if(occupationRate === 1){
             return 1 / (values.capacity + 1);
         }
-        return ((1 - occupationRate) * Math.pow(occupationRate, state))/ (1 - Math.pow(occupationRate, values.capacity + 1));
+        return ((1 - occupationRate) * Math.pow(occupationRate, state)) / (1 - Math.pow(occupationRate, values.capacity + 1));
     }
 }
 

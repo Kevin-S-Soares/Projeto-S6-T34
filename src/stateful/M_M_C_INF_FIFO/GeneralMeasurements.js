@@ -43,7 +43,7 @@ class GeneralMeasurements {
 
     getEmptyQueueProbability(values){
         let leftside = 0;
-        for(let i = 0; i < values.channels; i++){
+        for(let i = 0; i <= values.channels - 1; i++){
             let aux = Math.pow(this.rate, i) / Factorial.calculate(i);
             leftside += aux;
         }
@@ -59,8 +59,6 @@ class GeneralMeasurements {
     getAverageClientsOnQueue(values){
         return (this.emptyQueueProbability * values.channels * Math.pow(this.rate, values.channels + 1)) / (Factorial.calculate(values.channels) * Math.pow(values.channels - this.rate, 2));
     }
-
-
 
     getAverageWaitingTimeOnQueue(values){
         return (Math.pow(this.rate, values.channels) * values.processRate) / (Factorial.calculate(values.channels - 1) * Math.pow(values.channels * values.processRate - values.arriveRate, 2)) * this.emptyQueueProbability;

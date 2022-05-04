@@ -56,7 +56,6 @@ class Container extends React.Component {
     }
 
     setQueueType(event){
-        console.log(this.queueOptions[event.target.value]);
         this.queueOptions[event.target.value].reload();
         this.setState({selected: this.queueOptions[event.target.value]});
         this.setState({inputs: this.queueOptions[event.target.value].getInputs()});

@@ -41,7 +41,7 @@ class GeneralMeasurements {
     }
 
     getAverageClientsOnQueue(){
-        return this.occupationRate * this.occupationRate / (1 - this.occupationRate);
+        return (this.occupationRate * this.occupationRate) / (1 - this.occupationRate);
     }
 
     getEmptyQueueProbability(){

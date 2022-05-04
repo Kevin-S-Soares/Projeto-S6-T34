@@ -43,7 +43,7 @@ class WaitingOnQueue{
         let occupationRate = values.arriveRate / values.processRate;
         for(let i = 1; i <= 20; i++){
             let aux = occupationRate * Math.pow(Math.E, -(values.processRate - values.arriveRate) * i);
-            result.push([i, aux]);
+            result.push([i, aux.toFixed(8)]);
         }
         return result;
     }

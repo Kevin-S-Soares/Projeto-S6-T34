@@ -31,6 +31,10 @@ class GeneralMeasurements {
             {
                 description: "Tempo médio de permanência de qualquer usuário no sistema:", 
                 value: this.getWaitingTimeOnSystem(values).toFixed(3),
+            },
+            {
+                description: "Taxa de rejeição:", 
+                value: this.getRejectionRate(values).toFixed(3),
             }
         ]
     }
@@ -80,6 +84,10 @@ class GeneralMeasurements {
             return 1 / (values.capacity + 1);
         }
         return ((1 - this.occupationRate) * Math.pow(this.occupationRate, state))/ (1 - Math.pow(this.occupationRate, values.capacity + 1));
+    }
+
+    getRejectionRate(values){
+        return values.arriveRate * this.getProbabilityOfChangingState(values, values.capacity);
     }
 }
 

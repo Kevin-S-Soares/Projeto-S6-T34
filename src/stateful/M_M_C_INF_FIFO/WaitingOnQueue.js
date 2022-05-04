@@ -1,3 +1,5 @@
+import Factorial from "../../math/Factorial";
+
 class WaitingOnQueue{
     getName(){
         return "Probabilidade do tempo de espera na fila ser maior do que um tempo t";
@@ -40,12 +42,25 @@ class WaitingOnQueue{
 
     getData(values){
         const result = [];
-        let occupationRate = values.arriveRate / values.processRate;
+        let rate = values.arriveRate / values.processRate;
+        let occupationRate = rate / values.channels;
+        let emptyQueueProbability = this.getEmptyQueueProbability(values, rate);
         for(let i = 1; i <= 20; i++){
-            let aux = occupationRate * Math.pow(Math.E, -(values.processRate - values.arriveRate) * i);
-            result.push([i, aux]);
+            let aux = emptyQueueProbability * Math.pow(rate, values.channels) / (Factorial.calculate(values.channels) * (1 - occupationRate)) * Math.pow(Math.E, -(values.channels * values.processRate - values.arriveRate) * i) ;
+            result.push([i, aux.toFixed(8)]);
         }
         return result;
+    }
+
+    getEmptyQueueProbability(values, rate){
+        let leftside = 0;
+        for(let i = 0; i <= values.channels - 1; i++){
+            let aux = Math.pow(rate, i) / Factorial.calculate(i);
+            leftside += aux;
+        }
+        let rightside = (values.channels * Math.pow(rate, values.channels)) / (Factorial.calculate(values.channels) * (values.channels - rate)) ;
+        return Math.pow(leftside + rightside, -1);
+
     }
 }
 

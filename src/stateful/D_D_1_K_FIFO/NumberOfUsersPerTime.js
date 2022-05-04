@@ -139,15 +139,6 @@ class NumberOfUsersPerTime{
                     type: 'line',
                     smooth: true
                 },
-                /*
-                {
-                    name: 'Rejeitados',
-                    data: [[35,6], [36, 7], [37, 6]],
-                    color: 'purple',
-                    type: 'line',
-                    smooth: true
-                }
-                */
             ]
         });
     }

@@ -43,7 +43,7 @@ class ClientsOnSystem{
         for(let i = 0; i <= 20; i++)
         {
             let aux = Math.pow(occupationRate, i);
-            result.push([i, aux])
+            result.push([i, aux.toFixed(8)])
         }
         return result;
     }

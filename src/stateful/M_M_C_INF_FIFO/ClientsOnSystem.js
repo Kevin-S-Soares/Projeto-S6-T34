@@ -52,9 +52,10 @@ class ClientsOnSystem{
             }
             else{
                 aux = 1 - amount;
-                amount += this.getElementQueueProbability(emptyQueueProbability, i, values);
+                amount += this.getProbabilityOfChangingState(emptyQueueProbability, i, values);
+                
             }
-            result.push([i, aux])
+            result.push([i, aux.toFixed(8)])
         }
         return result;
     }
@@ -70,7 +71,7 @@ class ClientsOnSystem{
         return Math.pow(leftside + rightside, -1);
     }
 
-    getElementQueueProbability(emptyQueueProbability, state, values){
+    getProbabilityOfChangingState(emptyQueueProbability, state, values){
         let rate = values.arriveRate / values.processRate;
         if(state < values.channels){
             return emptyQueueProbability * Math.pow(rate, state) / Factorial.calculate(state);

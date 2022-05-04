@@ -71,7 +71,6 @@ class WaitingOnQueue{
             let aux = (processRate - arriveRate) * (i - 1);
             result.push([i, aux])
         }
-        console.log(result);
         return result;
     }
 
