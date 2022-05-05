@@ -45,6 +45,7 @@ class M_M_1_K_FIFO{
             {
                 label: "Taxa de atendimento:",
                 value: this.values.processRate,
+                min: "1",
                 event: this.setValue,
                 index: "processRate"
             },

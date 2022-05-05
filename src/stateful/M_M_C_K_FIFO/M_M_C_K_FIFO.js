@@ -44,6 +44,7 @@ class M_M_C_K_FIFO {
             },
             {
                 label: "Taxa de atendimento:",
+                min: "1",
                 value: this.values.processRate,
                 event: this.setValue,
                 index: "processRate"
@@ -56,7 +57,7 @@ class M_M_C_K_FIFO {
                 index: "channels"
             },
             {
-                label: "Capacidade:",
+                label: "Capacidade física do sistema:",
                 value: this.values.capacity,
                 event: this.setValue,
                 integer: true,

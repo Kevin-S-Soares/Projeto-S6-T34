@@ -18,7 +18,10 @@ class D_D_1_K_FIFO{
 
         this.getInputs = this.getInputs.bind(this);
         this.setMeasure = this.setMeasure.bind(this);
-        this.setValue = this.setValue.bind(this);
+        this.setArriveRate = this.setArriveRate.bind(this);
+        this.setProcessRate = this.setProcessRate.bind(this);
+        this.setCapacity = this.setCapacity.bind(this);
+        this.update = this.update.bind(this);
     }
 
     getName(){
@@ -32,28 +35,27 @@ class D_D_1_K_FIFO{
     getMeasures(){
         return this.measures;
     }
-
-
+    
     getInputs(){
         return [
             {
                 label: "Taxa de chegada:",
                 value: this.values.arriveRate,
-                event: this.setValue,
+                event: this.setArriveRate,
                 integer: true,
                 index: "arriveRate"
             },
             {
                 label: "Taxa de atendimento:",
                 value: this.values.processRate,
-                event: this.setValue,
+                event: this.setProcessRate,
                 integer: true,
                 index: "processRate"
             },
             {
                 label: "Capacidade física do sistema:",
                 value: this.values.capacity,
-                event: this.setValue,
+                event: this.setCapacity,
                 integer: true,
                 index: "capacity"
             }
@@ -79,10 +81,41 @@ class D_D_1_K_FIFO{
         this.chartUpdate(this.getChartVisualization());
     }
 
-    setValue(event){
+    setArriveRate(event){
+        let newValue = this.parseInput(event);
+        if(newValue >= this.values.processRate){
+            alert("Taxa de chegada precisa ser menor do que a taxa de atendimento!");
+        }
+        else{
+            this.values.arriveRate = newValue;
+        }
+        this.update();
+    }
+
+    setProcessRate(event){
+        let newValue = this.parseInput(event);
+        if(newValue <= this.values.arriveRate){
+            alert("Taxa de atendimento precisa ser maior do que a taxa de chegada!")
+        }
+        else{
+            this.values.processRate = newValue;
+        }
+        this.update();
+    }
+
+    setCapacity(event){
+        let newValue = this.parseInput(event);
+        this.values.capacity = newValue;
+        this.update();
+    }
+
+    parseInput(event){
         let node = event.target;
-        let input = node.getAttribute('index');
-        this.values[input] = parseInt(node.value);
+        let value = parseInt(node.value);
+        return value;
+    }
+
+    update(){
         this.chartUpdate(this.getChartVisualization());
         this.inputUpdate(this.getInputs());
     }

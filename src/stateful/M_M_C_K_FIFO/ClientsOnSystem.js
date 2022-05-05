@@ -20,7 +20,7 @@ class ClientsOnSystem{
                 name: 'Número de clientes no sistema',
                 interval: 1,
                 min: 0,
-                max: values.capacity,
+                max: values.capacity + 1,
                 top: "2%",
             },
             yAxis: {
@@ -56,6 +56,7 @@ class ClientsOnSystem{
             }
             result.push([i, aux])
         }
+        result.push([values.capacity + 1, 0]);
         return result;
     }
 

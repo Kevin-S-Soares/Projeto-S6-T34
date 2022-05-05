@@ -14,6 +14,7 @@ function InputNumberFactory(props) {
                             label={x.label}
                             event={x.event}
                             value={x.value}
+                            min={x.min}
                             integer={x.integer}
                             index={x.index}
                             key={key}

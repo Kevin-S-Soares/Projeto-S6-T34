@@ -45,12 +45,19 @@ class GeneralMeasurements {
     }
 
     getEmptyQueueProbability(values){
-        if(this.occupationRate === 1){
-            this.emptyQueueProbability = 1 / (values.capacity + 1);
+        if(values.capacity === 1){
+            this.emptyQueueProbability = 1 / (this.occupationRate + 1);
         }
         else{
-            this.emptyQueueProbability = (1 - this.occupationRate) / (1 - Math.pow(this.occupationRate, values.capacity + 1));
+            if(this.occupationRate === 1){
+                this.emptyQueueProbability = 1 / (values.capacity + 1);
+            }
+            else{
+                this.emptyQueueProbability = (1 - this.occupationRate) / (1 - Math.pow(this.occupationRate, values.capacity + 1));
+            }
+
         }
+
         return this.emptyQueueProbability;
     }
 
@@ -80,10 +87,15 @@ class GeneralMeasurements {
     }
 
     getProbabilityOfChangingState(values, state){
-        if(this.occupationRate === 1){
-            return 1 / (values.capacity + 1);
+        if(values.capacity === 1){
+            return this.occupationRate / (1 + this.occupationRate);
         }
-        return ((1 - this.occupationRate) * Math.pow(this.occupationRate, state))/ (1 - Math.pow(this.occupationRate, values.capacity + 1));
+        else{
+            if(this.occupationRate === 1){
+                return 1 / (values.capacity + 1);
+            }
+            return ((1 - this.occupationRate) * Math.pow(this.occupationRate, state))/ (1 - Math.pow(this.occupationRate, values.capacity + 1));
+        }
     }
 
     getRejectionRate(values){

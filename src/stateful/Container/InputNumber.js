@@ -8,7 +8,7 @@ function InputNumber(props) {
                     index={props.index}
                     onInput={props.event}
                     value={props.value}
-                    min={props.integer ? "1" : "0.1"}
+                    min={props.min === undefined ? (props.integer? "1" : "0.1")  : props.min}
                     step={props.integer ? "1" : "0.1"}
                     readOnly={props.readonly === undefined ? false : true}
                 />

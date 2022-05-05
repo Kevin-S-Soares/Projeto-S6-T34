@@ -9,8 +9,8 @@ class QueueTypeFactory{
         return [
             new D_D_1_K_FIFO(chartVisualization, updateInput),
             new M_M_1_INF_FIFO(chartVisualization, updateInput),
+            new M_M_1_K_FIFO(chartVisualization, updateInput),
             new M_M_C_INF_FIFO(chartVisualization, updateInput),
-            new  M_M_1_K_FIFO(chartVisualization, updateInput),
             new M_M_C_K_FIFO(chartVisualization, updateInput)
         ];
     }

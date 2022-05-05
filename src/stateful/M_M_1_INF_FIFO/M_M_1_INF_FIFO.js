@@ -18,7 +18,8 @@ class M_M_1_INF_FIFO{
 
         this.getInputs = this.getInputs.bind(this);
         this.setMeasure = this.setMeasure.bind(this);
-        this.setValue = this.setValue.bind(this);
+        this.setArriveRate = this.setArriveRate.bind(this);
+        this.setProcessRate = this.setProcessRate.bind(this);
     }
 
     getName(){
@@ -36,15 +37,16 @@ class M_M_1_INF_FIFO{
     getInputs(){
         return [
             {
-                label: "Taxa de chegada",
+                label: "Taxa de chegada:",
                 value: this.values.arriveRate,
-                event: this.setValue,
+                event: this.setArriveRate,
                 index: "arriveRate"
             },
             {
-                label: "Taxa de atendimento",
+                label: "Taxa de atendimento:",
+                min: "1",
                 value: this.values.processRate,
-                event: this.setValue,
+                event: this.setProcessRate,
                 index: "processRate"
             }
         ]
@@ -69,10 +71,35 @@ class M_M_1_INF_FIFO{
         this.chartUpdate(this.getChartVisualization());
     }
 
-    setValue(event){
+    setArriveRate(event){
+        let newValue = this.parseInput(event);
+        if(newValue >= this.values.processRate){
+            alert("Taxa de chegada precisa ser menor do que a taxa de atendimento!");
+        }
+        else{
+            this.values.arriveRate = newValue;
+        }
+        this.update();
+    }
+
+    setProcessRate(event){
+        let newValue = this.parseInput(event);
+        if(newValue <= this.values.arriveRate){
+            alert("Taxa de atendimento precisa ser maior do que a taxa de chegada!")
+        }
+        else{
+            this.values.processRate = newValue;
+        }
+        this.update();
+    }
+
+    parseInput(event){
         let node = event.target;
-        let input = node.getAttribute('index');
-        this.values[input] = parseFloat(node.value);
+        let value = parseFloat(node.value);
+        return value;
+    }
+
+    update(){
         this.chartUpdate(this.getChartVisualization());
         this.inputUpdate(this.getInputs());
     }
