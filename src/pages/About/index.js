@@ -1,3 +1,6 @@
+import 'katex/dist/katex.min.css';
+import { InlineMath } from 'react-katex';
+
 function App(){
     return(
         <div>
@@ -26,10 +29,42 @@ function App(){
             <p>A disciplina de atendimento, é "o critério estabelecido pela gerência do sistema, segundo o qual os usuários que se encontram na fila são atendidos quando um posto fica disponível".</p>
 
             <h4>Sistemas de filas determinísticos</h4>
-            <p>Se são conhecidos os números de chegadas e atendimentos e os instantes de tempo que acontecem, diz-se que o sistema é determinístico.</p>
+            <p>Se são conhecidos os números de chegadas (λ) e atendimentos (μ)  e os instantes de tempo que acontecem, diz-se que o sistema é determinístico.</p>
             
             <h6>D/D/1/K/FIFO</h6>
             <p>O D/D/1/K/FIFO é um sistema de processo de chegada de usuários determinístico; processo de atendimento de usuários determinístico; apenas um canal de atendimento; a capacidade é um paramêtro K; e a disciplina de atendimento FIFO, isto é, First in first out, ou seja, os usuários são atendidos de acordo com a ordem de chegada.</p>
+            <p>Se o número de chegadas de usuários for maior do que o número de atendimento usuários, não há formação de fila.</p>
+            <h6>Número de usuários em dado instante:</h6>
+            <p>Caso exista um m inteiro que satisfaça a condição: <InlineMath math="\frac{1}{\mu} = m\frac{1}{\lambda}" /></p>
+            <InlineMath math="n(t)=\begin{cases}
+            0 &\text{se } t < \frac{1}{\lambda} \\
+            \lfloor t\lambda \rfloor - \lfloor (t - \frac{1}{\lambda})\mu\rfloor &\text{se } \frac{1}{\lambda} \eqslantless t < t_0^*\\
+            K &\text{se } t \eqslantgtr t_0^*
+            \end{cases}" />
+            <p>Caso não exista um m inteiro que satisfaça a condição: <InlineMath math="\frac{1}{\mu} = m\frac{1}{\lambda}" /></p>
+            <InlineMath math="n(t)=\begin{cases}
+            0 &\text{se } t < \frac{1}{\lambda} \\
+            \lfloor t\lambda \rfloor - \lfloor (t - \frac{1}{\lambda})\mu\rfloor &\text{se } \frac{1}{\lambda} \eqslantless t < t_0^*\\
+            K-1 \, ou \, K &\text{se } t \eqslantgtr t_0^*
+            \end{cases}" />
+            <p>Onde <InlineMath math="t_0^*"/> é o instante da primeira rejeição.</p>
+
+            <h6>Tempo de espera do n-ésimo usuário na fila:</h6>
+            <p>Caso exista um m inteiro que satisfaça a condição: <InlineMath math="\frac{1}{\mu} = m\frac{1}{\lambda}" /></p>
+            <InlineMath math="w_q(n)=\begin{cases}
+            (\frac{1}{\mu}-\frac{1}{\lambda})(n-1) &\text{se } n < \lambda t_0^* \\
+            (K-1) \frac{1}{\mu} &\text{se } n \eqslantgtr \lambda t_0^*\\
+            \end{cases}" />
+            <br></br>
+            <br></br>
+            <p>Caso não exista um m inteiro que satisfaça a condição: <InlineMath math="\frac{1}{\mu} = m\frac{1}{\lambda}" /></p>
+            <InlineMath math="w_q(n)=\begin{cases}
+            (\frac{1}{\mu}-\frac{1}{\lambda})(n-1) &\text{se } n < \lambda t_0^* \\
+            Não \, existe \, expressão \, geral &\text{se } n \eqslantgtr \lambda t_0^*\\
+            \end{cases}" />
+            <br></br>
+            <br></br>
+            <p>Onde <InlineMath math="\lambda t_0^*"/> é ordem da primeira rejeição.</p>
 
             <h4>Sistemas de filas com distribuições estocásticas</h4>
             <h6>M/M/1/∞/FIFO</h6>
