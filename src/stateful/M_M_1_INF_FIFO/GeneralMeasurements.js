@@ -25,7 +25,7 @@ class GeneralMeasurements {
                 value: this.getAverageWaitingTimeOnQueue(values).toFixed(2),
             },
             {
-                description: "Tempo médio de permanência de qualquer usuário no sistema:", 
+                description: "Tempo médio de espera de qualquer usuário no sistema:", 
                 value: this.getWaitingTimeOnSystem(values).toFixed(2),
             }
         ]

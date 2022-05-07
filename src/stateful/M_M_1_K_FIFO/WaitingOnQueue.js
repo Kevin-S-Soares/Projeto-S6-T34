@@ -52,7 +52,7 @@ class WaitingOnQueue{
             for(let i = 0; i <= n; i++){
                 rightside += Math.pow(values.processRate * t, i) / Factorial.calculate(i);
             }
-            let aux = 1 - leftside * rightside * Math.pow(Math.E, -values.processRate * t);
+            let aux = leftside * rightside * Math.pow(Math.E, -values.processRate * t);
             result.push([t, aux.toFixed(8)]);
         }
         return result;
