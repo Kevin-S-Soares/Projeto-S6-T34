@@ -68,7 +68,18 @@ function App(){
             <p>Onde <InlineMath math="\lambda t_0^*"/> é ordem da primeira rejeição.</p>
 
             <h4>Sistemas de filas com distribuições estocásticas</h4>
-
+            <p>Segundo o livro, "um processo estocástico <InlineMath math="\lbrace X(t) | t \in U  \rbrace"/> é uma fámilia / sequência de variáveis aleatórias <InlineMath math="X(t)"/> que descreve a evolução de alguma característica X do processo sob análise ao longo do tempo <InlineMath math="t \in U"/>".</p>
+            <p>Segundo o livro, "a um processo estocástico estão associados dois espaços: o espaço de estados, <InlineMath math="E"/> e o espaço de parâmetros, <InlineMath math="U"/>. O espaço <InlineMath math="E"/> é o conjunto de valores que a variável aleatória <InlineMath math="X(t)"/> pode assumir e o espaço <InlineMath math="U"/> é o conjunto de valores assumidos pela variável <InlineMath math="t"/> (tempos ou índices)".</p>
+            <p>Segundo o livro, "se <InlineMath math="E"/> é um conjunto discreto, o processo estocástico é denominado cadeia estocástica, caso contrário é denominado processo contínuo".</p>
+            <h6>Processos Markovianos</h6>
+            <p>Segundo o livro, "um processo estocástico <InlineMath math="\lbrace X(t) | t \in U  \rbrace"/> é denominado processo markoviano se dada uma sequência de tempos <InlineMath math="t_0 < t_1 < t_2 < ... t_n < t"/> a distribuição de probabilidade condicional de <InlineMath math="X(t)"/> para dados valores de <InlineMath math="X(t_0), X(t_1) ... X(t_n)"/> depende unicamente de <InlineMath math="X(t_n)"/>".</p>
+            <p>Segundo o livro, "um processo markoviano que possui o espaço de estados discreto é denominado cadeia de Markov".</p>
+            <h6>Cadeia de Markov Homôgeneas no Tempo</h6>
+            <p>Segundo o livro, "uma cadeia de Markov de paramêtro contínuo é denominada homôgenea no tempo se possuí probabilidades de transição estacionárias, ou seja, se <InlineMath math="P_{in}(v, z) z \ge v"/> depende somente da diferença <InlineMath math="t = (z - v), \forall i,n = 0, 1, 2..."/>".</p>
+            <h6>Cadeia de Markov Irredutível</h6>
+            <p>Segundo o livro, "uma cadeia de Markov homogênea é denominada irredutível se todo estado pode ser alcançado a partir dos demais, ou seja, se existe <InlineMath math="t"/> tal que <InlineMath math="p_{in}(t) > 0, \forall i, n"/>".</p>
+            <h6>Processo de Nascimento e Morte</h6>
+            <p>Segundo o livro, "uma cadeia de Markov homogênea, irredutível, de paramêtro contínuo, é denominada processo de nascimento e morte (Birth-Death Process) se as únicas mudanças permitidas a partir de um determinado estado <InlineMath math="n"/> do processo são para seus vizinhos imediatos, ou seja, para <InlineMath math="n + 1"/> ou <InlineMath math="n - 1"/>. A mudança para o estado <InlineMath math="n + 1, \forall n"/> representa um nascimento, e para o estado <InlineMath math="n - 1, n > 0"/>, uma morte; essas transições se processam com taxas <InlineMath math="\lambda_n"/> e <InlineMath math="\mu_n"/>, respectivamente, que dependem somento do estado <InlineMath math="n"/> do sistema (independem do tempo)".</p>
             <h6>M/M/1/∞/FIFO</h6>
             <p>O M/M/1/∞/FIFO é um sistema de processo de chegada de usuários de distribuição exponencial ou Markoviano; processo de atendimento de usuários de distruibuição exponencial; apenas um canal de atendimento; a capacidade física do sistema é infinita; e a disciplina de atendimento FIFO.</p>
             <h6>Taxa de ocupação / utilização (<InlineMath math="\rho"/>):</h6>
